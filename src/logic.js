@@ -56,6 +56,20 @@ const move = (props) => {
     else if(head.y + 1 >= boardHeight)
         moves.up = false
 
+    const body = props.you.body
+
+    // dont eat myself
+    body.forEach(segment => {
+        if(segment.x === head.x+1 && segment.y === head.y)
+            moves.right = false
+        else if(segment.x === head.x-1 && segment.y === head.y)
+            moves.left = false
+        else if(segment.y === head.y+1 && segment.x === head.x)
+            moves.up = false
+        else if(segment.y === head.y-1 && segment.x === head.x)
+            moves.down = false
+    }
+
     const safe_moves = Object.keys(moves).filter(keys => moves[keys])
     const res = {
         move: safe_moves[Math.floor(Math.random() * safe_moves.length)]
