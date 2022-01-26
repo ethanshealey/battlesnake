@@ -32,7 +32,7 @@ const move = (props) => {
         right: true
     }
 
-    const [head, neck] = [props.you.head, props.you.head[1]]
+    const [head, neck] = [props.you.head, props.you.body[1]]
     if(neck.x < head.x) 
         moves.left = false
     else if(neck.x > head.x)
