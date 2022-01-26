@@ -24,7 +24,31 @@ const end = (props) => {
 }
 
 const move = (props) => {
-    console.log(`${props.game.id} MOVE`)
+
+    const moves = {
+        up: true,
+        down: true,
+        left: true,
+        right: true
+    }
+
+    const [head, neck] = [props.you.head, props.you.neck]
+    if(neck.x < head.x) 
+        moves.left = false
+    else if(neck.x > head.x)
+        moves.right = false
+    else if(neck.y < head.y)
+        moves.down = false
+    else if(neck.y > head.y) 
+        moves.up = false
+
+    const safe_moves = Object.keys(moves).filter(keys => moves[keys])
+    const res = {
+        move: safe_moves[Math.floor(Math.random() * safe_moves.length)]
+    }
+
+    return res
+
 }
 
 module.exports = {
