@@ -58,7 +58,7 @@ const move = (props) => {
     }
 
     console.log('----------------------------------------------------')
-    console.log(`Head: ${head}`)
+    console.log(`Head: ${JSON.stringify(head)}`)
     console.log(`Safe Moves: ${safe_moves}`)
     console.log(`Moving: ${res.move}`)
     console.log('----------------------------------------------------')
