@@ -68,7 +68,7 @@ const move = (props) => {
             moves.up = false
         else if(segment.y === head.y-1 && segment.x === head.x)
             moves.down = false
-    }
+    })
 
     const safe_moves = Object.keys(moves).filter(keys => moves[keys])
     const res = {
