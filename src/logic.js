@@ -49,11 +49,11 @@ const move = (props) => {
     // dont go out of bounds
     if(head.x - 1 < 0)
         moves.left = false
-    else if(head.x + 1 > boardWidth)
+    else if(head.x + 1 >= boardWidth)
         moves.right = false
     else if(head.y - 1 < 0)
         moves.down = false
-    else if(head.y + 1 > boardHeight)
+    else if(head.y + 1 >= boardHeight)
         moves.up = false
 
     const safe_moves = Object.keys(moves).filter(keys => moves[keys])
