@@ -57,7 +57,10 @@ const move = (props) => {
         move: safe_moves[Math.floor(Math.random() * safe_moves.length)]
     }
 
-    console.log(`MovingL ${res.move}`)
+    console.log('----------------------------------------------------')
+    console.log(`Safe Moves: ${safe_moves}`)
+    console.log(`Moving: ${res.move}`)
+    console.log('----------------------------------------------------')
 
     return res
 
