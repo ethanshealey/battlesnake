@@ -42,6 +42,16 @@ const move = (props) => {
     else if(neck.y > head.y) 
         moves.up = false
 
+    const [boardWidth, boardHeight] = [props.board.width, props.board.height]
+    if(head.x - 1 >= boardWidth)
+        moves.left = false
+    else if(head.x + 1 >= boardWidth)
+        moves.right = false
+    else if(head.y - 1 >= boardHeight)
+        moves.down = false
+    else if(head.y + 1 >= boardHeight)
+        moves.up = false
+
     const safe_moves = Object.keys(moves).filter(keys => moves[keys])
     const res = {
         move: safe_moves[Math.floor(Math.random() * safe_moves.length)]
