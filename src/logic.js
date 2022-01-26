@@ -49,11 +49,11 @@ const move = (props) => {
     // dont go out of bounds
     if(head.x - 1 < 0)
         moves.left = false
-    else if(head.x + 1 >= boardWidth)
+    if(head.x + 1 >= boardWidth)
         moves.right = false
-    else if(head.y - 1 < 0)
+    if(head.y - 1 < 0)
         moves.down = false
-    else if(head.y + 1 >= boardHeight)
+    if(head.y + 1 >= boardHeight)
         moves.up = false
 
     const body = props.you.body
@@ -62,11 +62,11 @@ const move = (props) => {
     body.forEach(segment => {
         if(segment.x === head.x+1 && segment.y === head.y)
             moves.right = false
-        else if(segment.x === head.x-1 && segment.y === head.y)
+        if(segment.x === head.x-1 && segment.y === head.y)
             moves.left = false
-        else if(segment.y === head.y+1 && segment.x === head.x)
+        if(segment.y === head.y+1 && segment.x === head.x)
             moves.up = false
-        else if(segment.y === head.y-1 && segment.x === head.x)
+        if(segment.y === head.y-1 && segment.x === head.x)
             moves.down = false
     })
 
