@@ -10,8 +10,8 @@ const info = () => {
         apiversion: '1',
         author: 'Ethan Shealey',
         color: '#4f9ff0',
-        head: 'default',
-        tail: 'default'
+        head: 'caffeine',
+        tail: 'mouse'
     }
 }
 
@@ -70,13 +70,16 @@ const move = (props) => {
             moves.down = false
     })
 
+    // decide which moves is possible
     const safe_moves = Object.keys(moves).filter(keys => moves[keys])
+
+    // craft response 
     const res = {
         move: safe_moves[Math.floor(Math.random() * safe_moves.length)]
     }
 
+    // debug
     console.log('----------------------------------------------------')
-    console.log(`Data: ${JSON.stringify(props)}`)
     console.log(`Head: ${JSON.stringify(head)}`)
     console.log(`Safe Moves: ${safe_moves}`)
     console.log(`Moving: ${res.move}`)
