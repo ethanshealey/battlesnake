@@ -44,13 +44,6 @@ const move = (props) => {
         move: safe_moves[Math.floor(Math.random() * safe_moves.length)]
     }
 
-    // debug
-    console.log('----------------------------------------------------')
-    console.log(`Head: ${JSON.stringify(head)}`)
-    console.log(`Safe Moves: ${safe_moves}`)
-    console.log(`Moving: ${res.move}`)
-    console.log('----------------------------------------------------')
-
     return res
 
 }

@@ -28,7 +28,12 @@ const avoidBasicDeath = (moves, props) => {
             moves.down = false
     })
 
-    console.log(`MOVES: ${moves}`)
+    // debug
+    console.log('----------------------------------------------------')
+    console.log(`Head: ${JSON.stringify(head)}`)
+    console.log(`Safe Moves: ${safe_moves}`)
+    console.log(`Moving: ${res.move}`)
+    console.log('----------------------------------------------------')
 
     return moves
 }
