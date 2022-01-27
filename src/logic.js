@@ -4,6 +4,8 @@
  * Created by Ethan Shealey
  */
 
+const { avoidBasicDeath } = require('./modules')
+
 const info = () => {
     console.log('INFO')
     return {
@@ -25,50 +27,14 @@ const end = (props) => {
 
 const move = (props) => {
 
-    const moves = {
+    let moves = {
         up: true,
         down: true,
         left: true,
         right: true
     }
 
-    const [head, neck] = [props.you.head, props.you.body[1]]
-
-    // dont eat neck
-    if(neck.x < head.x) 
-        moves.left = false
-    else if(neck.x > head.x)
-        moves.right = false
-    else if(neck.y < head.y)
-        moves.down = false
-    else if(neck.y > head.y) 
-        moves.up = false
-
-    const [boardWidth, boardHeight] = [props.board.width, props.board.height]
-   
-    // dont go out of bounds
-    if(head.x - 1 < 0)
-        moves.left = false
-    if(head.x + 1 >= boardWidth)
-        moves.right = false
-    if(head.y - 1 < 0)
-        moves.down = false
-    if(head.y + 1 >= boardHeight)
-        moves.up = false
-
-    const body = props.you.body
-
-    // dont eat myself
-    body.forEach(segment => {
-        if(segment.x === head.x+1 && segment.y === head.y)
-            moves.right = false
-        if(segment.x === head.x-1 && segment.y === head.y)
-            moves.left = false
-        if(segment.y === head.y+1 && segment.x === head.x)
-            moves.up = false
-        if(segment.y === head.y-1 && segment.x === head.x)
-            moves.down = false
-    })
+    moves = avoidBasicDeath(moves, props)
 
     // decide which moves is possible
     const safe_moves = Object.keys(moves).filter(keys => moves[keys])
