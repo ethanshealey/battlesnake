@@ -28,11 +28,9 @@ const avoidBasicDeath = (moves, props) => {
             moves.down = false
     })
 
-    console.log(`Moves: ${moves}`)
-
     return moves
 }
 
-modules.exports = {
+module.exports = {
     avoidBasicDeath: avoidBasicDeath
 }
