@@ -38,11 +38,11 @@ const move = (props) => {
     // dont eat neck
     if(neck.x < head.x || head.x - 1 < 0) 
         moves.left = false
-    else if(neck.x > head.x || head.x + 1 >= boardWidth)
+    if(neck.x > head.x || head.x + 1 >= boardWidth)
         moves.right = false
-    else if(neck.y < head.y || head.y - 1 < 0)
+    if(neck.y < head.y || head.y - 1 < 0)
         moves.down = false
-    else if(neck.y > head.y || head.y + 1 >= boardHeight) 
+    if(neck.y > head.y || head.y + 1 >= boardHeight) 
         moves.up = false
 
     const body = props.you.body
