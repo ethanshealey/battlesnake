@@ -10,8 +10,8 @@ const info = () => {
         apiversion: '1',
         author: 'Ethan Shealey',
         color: '#4f9ff0',
-        head: 'caffeine',
-        tail: 'mouse'
+        head: 'pixel',
+        tail: 'pixel'
     }
 }
 
