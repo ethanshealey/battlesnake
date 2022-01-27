@@ -28,6 +28,8 @@ const avoidBasicDeath = (moves, props) => {
             moves.down = false
     })
 
+    console.log(`MOVES: ${moves}`)
+
     return moves
 }
 
