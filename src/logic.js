@@ -4,16 +4,14 @@
  * Created by Ethan Shealey
  */
 
-const { avoidBasicDeath } = require('./modules')
-
 const info = () => {
     console.log('INFO')
     return {
         apiversion: '1',
         author: 'Ethan Shealey',
         color: '#4f9ff0',
-        head: 'pixel',
-        tail: 'pixel'
+        head: 'default',
+        tail: 'default'
     }
 }
 
@@ -27,26 +25,62 @@ const end = (props) => {
 
 const move = (props) => {
 
-    let moves = {
+    const moves = {
         up: true,
         down: true,
         left: true,
         right: true
     }
 
-    moves = avoidBasicDeath(moves, props)
+    const [head, neck] = [props.you.head, props.you.body[1]]
+
+    // dont eat neck
+    if(neck.x < head.x) 
+        moves.left = false
+    else if(neck.x > head.x)
+        moves.right = false
+    else if(neck.y < head.y)
+        moves.down = false
+    else if(neck.y > head.y) 
+        moves.up = false
+
+    const [boardWidth, boardHeight] = [props.board.width, props.board.height]
+   
+    // dont go out of bounds
+    if(head.x - 1 < 0)
+        moves.left = false
+    if(head.x + 1 >= boardWidth)
+        moves.right = false
+    if(head.y - 1 < 0)
+        moves.down = false
+    if(head.y + 1 >= boardHeight)
+        moves.up = false
+
+    const body = props.you.body
+
+    // dont eat myself
+    body.forEach(segment => {
+        if(segment.x === head.x+1 && segment.y === head.y)
+            moves.right = false
+        if(segment.x === head.x-1 && segment.y === head.y)
+            moves.left = false
+        if(segment.y === head.y+1 && segment.x === head.x)
+            moves.up = false
+        if(segment.y === head.y-1 && segment.x === head.x)
+            moves.down = false
+    })
 
     // decide which moves is possible
     const safe_moves = Object.keys(moves).filter(keys => moves[keys])
 
-    // craft response 
+    // craft response
     const res = {
         move: safe_moves[Math.floor(Math.random() * safe_moves.length)]
     }
 
     // debug
     console.log('----------------------------------------------------')
-    console.log(`Head: ${JSON.stringify(props.you.head)}`)
+    console.log(`Head: ${JSON.stringify(head)}`)
     console.log(`Safe Moves: ${safe_moves}`)
     console.log(`Moving: ${res.move}`)
     console.log('----------------------------------------------------')
